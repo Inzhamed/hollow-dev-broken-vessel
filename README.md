@@ -8,13 +8,15 @@ hollow-dev-broken-vessel
 ├── package.json
 ├── src
 │ ├── controllers
-│ │ └── sshController.js
+│ │ ├── directoryController.js
+│ │ ├── sshController.js
+│ │ └── metricsController.js
 │ ├── middlewares
 │ │ └── 
 │ ├── routes
+│ │ ├── directoryRoutes.js
 │ │ ├── sshRoutes.js
-│ │ ├── systemRoutes.js
-│ │ └── fileRoutes.js
+│ │ └── metricsRoutes.js
 │ └── app.js
 ├── public
 │ ├── index.html
