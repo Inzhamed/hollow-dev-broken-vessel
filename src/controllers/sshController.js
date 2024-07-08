@@ -1,6 +1,4 @@
-const { NodeSSH } = require("node-ssh");
-const fs = require("fs");
-const ssh = new NodeSSH();
+const connectSSH = require("../utils/sshUtil");
 
 let currentDirectory = "~";
 
@@ -8,12 +6,7 @@ const executeRemoteCommand = async (req, res) => {
   const { command } = req.body;
 
   try {
-    const sshkey = fs.readFileSync(process.env.SSH_PRIVATE_KEY_PATH, "utf8");
-    await ssh.connect({
-      host: process.env.SSH_HOST,
-      username: process.env.SSH_USERNAME,
-      privateKey: sshkey,
-    });
+    const ssh = await connectSSH();
 
     let fullCommand;
     if (command.startsWith("cd ")) {

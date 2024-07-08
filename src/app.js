@@ -12,11 +12,13 @@ app.use(cors());
 const sshRoutes = require("./routes/sshRoutes");
 const metricsRoutes = require("./routes/metricsRoutes");
 const directoryRoutes = require("./routes/directoryRoutes");
+const serviceRoutes = require("./routes/serviceRoutes"); 
 
 
 app.use("/ssh", sshRoutes);
 app.use("/metrics", metricsRoutes);
 app.use("/directories", directoryRoutes);
+app.use("/services", serviceRoutes);
 
 
 // Frontend

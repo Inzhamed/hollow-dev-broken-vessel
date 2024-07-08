@@ -10,14 +10,20 @@ hollow-dev-broken-vessel
 │ ├── controllers
 │ │ ├── directoryController.js
 │ │ ├── sshController.js
+│ │ ├── serviceController.js
 │ │ └── metricsController.js
-│ ├── middlewares
-│ │ └── 
+│ │
 │ ├── routes
 │ │ ├── directoryRoutes.js
 │ │ ├── sshRoutes.js
+│ │ ├── serviceRoutes.js
 │ │ └── metricsRoutes.js
+│ │
+│ ├── utils
+│ │ └── sshUtil.js
+│ │
 │ └── app.js
+│ 
 ├── public
 │ ├── index.html
 │ ├── scripts.js

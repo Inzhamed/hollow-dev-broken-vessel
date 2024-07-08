@@ -1,17 +1,10 @@
-const { NodeSSH } = require("node-ssh");
-const fs = require("fs");
-const ssh = new NodeSSH();
+const connectSSH = require("../utils/sshUtil");
 
 const exploreDirectory = async (req, res) => {
   const { path } = req.body;
 
   try {
-    const sshkey = fs.readFileSync(process.env.SSH_PRIVATE_KEY_PATH, "utf8");
-    await ssh.connect({
-      host: process.env.SSH_HOST,
-      username: process.env.SSH_USERNAME,
-      privateKey: sshkey,
-    });
+    const ssh = await connectSSH();
 
     const result = await ssh.execCommand(`ls -l ${path}`);
     if (result.stderr) {
@@ -38,7 +31,6 @@ const exploreDirectory = async (req, res) => {
   }
 };
 
-
 const createDirectory = async (req, res) => {
   const { path, name } = req.body;
 
@@ -53,7 +45,6 @@ const createDirectory = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
-
 
 const deleteDirectory = async (req, res) => {
   const { path, name } = req.body;

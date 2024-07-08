@@ -1,16 +1,8 @@
-const { NodeSSH } = require("node-ssh");
-const fs = require("fs");
-const { log } = require("console");
-const ssh = new NodeSSH();
+const connectSSH = require("../utils/sshUtil");
 
 const getSystemMetrics = async (req, res) => {
   try {
-    const sshkey = fs.readFileSync(process.env.SSH_PRIVATE_KEY_PATH, "utf8");
-    await ssh.connect({
-      host: process.env.SSH_HOST,
-      username: process.env.SSH_USERNAME,
-      privateKey: sshkey,
-    });
+    const ssh = await connectSSH();
 
     const cpuResult = await ssh.execCommand('top -bn1 | grep "Cpu(s)"');
     const memResult = await ssh.execCommand("free -m");

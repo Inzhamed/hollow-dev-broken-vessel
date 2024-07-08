@@ -123,6 +123,68 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Create service
+  const createServiceForm = document.getElementById("createServiceForm");
+  createServiceForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const serviceName = document.getElementById("serviceName").value;
+    const serviceContent = document.getElementById("serviceContent").value;
+    try {
+      const response = await fetch("http://localhost:3000/services/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ serviceName, serviceContent }),
+      });
+      const data = await response.json();
+      alert(data.message);
+    } catch (error) {
+      console.error("Error creating service:", error);
+    }
+  });
+
+  // Configure file
+  const configureFileForm = document.getElementById("configureFileForm");
+  configureFileForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const filePath = document.getElementById("filePath").value;
+    const fileContent = document.getElementById("fileContent").value;
+    try {
+      const response = await fetch("http://localhost:3000/services/configure", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ filePath, fileContent }),
+      });
+      const data = await response.json();
+      alert(data.message);
+    } catch (error) {
+      console.error("Error configuring file:", error);
+    }
+  });
+
+  // Execute bash script
+  const executeScriptForm = document.getElementById("executeScriptForm");
+  executeScriptForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const script = document.getElementById("scriptContent").value;
+    try {
+      const response = await fetch("http://localhost:3000/services/execute", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ script }),
+      });
+      const data = await response.json();
+      alert(data.message);
+    } catch (error) {
+      console.error("Error executing script:", error);
+    }
+  });
+
   // Execute command
   const commandForm = document.getElementById("commandForm");
   const commandOutputElement = document.getElementById("commandOutput");
@@ -164,7 +226,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .then((data) => {
       updateCurrentDirectory(data.currentDirectory);
     })
-    .catch((error) => {
+    .catch((error) => { 
       console.error("Error fetching initial directory:", error);
     });
 

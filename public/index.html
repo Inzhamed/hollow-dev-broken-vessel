@@ -1,60 +1,127 @@
 <!-- public/index.html -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Server Monitoring Dashboard</title>
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <h1>Server Monitoring Dashboard</h1>
-  <div id="metrics">
-    <h2>System Metrics</h2>
-    <div id="cpuMetrics">
-      <p>CPU Usage: <span id="cpuUsage">Loading...</span></p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Server Monitoring Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1>Server Monitoring Dashboard</h1>
+    <div id="metrics">
+      <h2>System Metrics</h2>
+      <div id="cpuMetrics">
+        <p>CPU Usage: <span id="cpuUsage">Loading...</span></p>
+      </div>
+      <div id="ramMetrics">
+        <p>RAM Usage: <span id="ramUsage">Loading...</span></p>
+        <p>Total RAM: <span id="ramTotal">Loading...</span></p>
+        <p>Used RAM: <span id="ramUsed">Loading...</span></p>
+      </div>
     </div>
-    <div id="ramMetrics">
-      <p>RAM Usage: <span id="ramUsage">Loading...</span></p>
-      <p>Total RAM: <span id="ramTotal">Loading...</span></p>
-      <p>Used RAM: <span id="ramUsed">Loading...</span></p>
+    <div id="command-execution">
+      <h2>Execute Command</h2>
+      <div>
+        <p><span id="currentDirectory">/home/inz</span></p>
+        <form id="commandForm">
+          <input
+            type="text"
+            id="commandInput"
+            placeholder="Enter command"
+            required
+          />
+          <button type="submit">Execute</button>
+        </form>
+      </div>
+      <pre id="commandOutput">Command output will appear here...</pre>
     </div>
-  </div>
-  <div id="directory-explorer">
-    <h2>Directory Explorer</h2>
-    <form id="directoryForm">
-      <input type="text" id="directoryPath" placeholder="/path/to/directory" required />
-      <button type="submit">Explore</button>
-    </form>
-    <ul id="directoryList">
-      Loading...
-    </ul>
-    <h3>Manage Directories</h3>
-    <form id="createDirectoryForm">
-      <input type="text" id="newDirectoryName" placeholder="New directory name" required />
-      <button type="submit">Create</button>
-    </form>
-    <form id="deleteDirectoryForm">
-      <input type="text" id="deleteDirectoryName" placeholder="Directory name to delete" required />
-      <button type="submit">Delete</button>
-    </form>
-    <form id="renameDirectoryForm">
-      <input type="text" id="oldDirectoryName" placeholder="Old directory name" required />
-      <input type="text" id="newDirectoryNameRename" placeholder="New directory name" required />
-      <button type="submit">Rename</button>
-    </form>
-  </div>
-  <div id="command-execution">
-    <h2>Execute Command</h2>
-    <div>
-      <p><span id="currentDirectory">/home/inz</span></p>
-      <form id="commandForm">
-        <input type="text" id="commandInput" placeholder="Enter command" required />
-        <button type="submit">Execute</button>
+    <div id="directory-explorer">
+      <h2>Directory Explorer</h2>
+      <form id="directoryForm">
+        <input
+          type="text"
+          id="directoryPath"
+          placeholder="/path/to/directory"
+          required
+        />
+        <button type="submit">Explore</button>
+      </form>
+      <ul id="directoryList">
+      </ul>
+      <h3>Manage Directories</h3>
+      <p>
+        To manage a directory you should first specify its path in the directory
+        explorer above.
+      </p>
+      <form id="createDirectoryForm">
+        <input
+          type="text"
+          id="newDirectoryName"
+          placeholder="New directory name"
+          required
+        />
+        <button type="submit">Create</button>
+      </form>
+      <form id="deleteDirectoryForm">
+        <input
+          type="text"
+          id="deleteDirectoryName"
+          placeholder="Directory name to delete"
+          required
+        />
+        <button type="submit">Delete</button>
+      </form>
+      <form id="renameDirectoryForm">
+        <input
+          type="text"
+          id="oldDirectoryName"
+          placeholder="Old directory name"
+          required
+        />
+        <input
+          type="text"
+          id="newDirectoryNameRename"
+          placeholder="New directory name"
+          required
+        />
+        <button type="submit">Rename</button>
       </form>
     </div>
-    <pre id="commandOutput">Command output will appear here...</pre>
-  </div>
-  <script src="scripts.js"></script>
-</body>
+    <div id="service-management">
+      <h2>Service Management</h2>
+      <form id="createServiceForm">
+        <input
+          type="text"
+          id="serviceName"
+          placeholder="Service Name"
+          required
+        />
+        <textarea
+          id="serviceContent"
+          placeholder="Service Content"
+          required
+        ></textarea>
+        <button type="submit">Create Service</button>
+      </form>
+      <form id="configureFileForm">
+        <input type="text" id="filePath" placeholder="File Path" required />
+        <textarea
+          id="fileContent"
+          placeholder="File Content"
+          required
+        ></textarea>
+        <button type="submit">Configure File</button>
+      </form>
+      <form id="executeScriptForm">
+        <textarea
+          id="scriptContent"
+          placeholder="Bash Script"
+          required
+        ></textarea>
+        <button type="submit">Execute Script</button>
+      </form>
+    </div>
+    <script src="scripts.js"></script>
+  </body>
 </html>

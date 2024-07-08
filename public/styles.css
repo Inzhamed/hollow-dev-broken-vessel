@@ -25,3 +25,7 @@ form {
     display: flex;
     gap: 10px;
 }
+textarea {
+    width: 700px;
+    height: 100px;
+}
