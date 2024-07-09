@@ -1,10 +1,18 @@
-const connectSSH = require("../utils/sshUtil");
+// const connectSSH = require("../utils/sshUtil");
+const { NodeSSH } = require("node-ssh");
+const fs = require("fs");
+const ssh = new NodeSSH();
 
 const exploreDirectory = async (req, res) => {
   const { path } = req.body;
 
   try {
-    const ssh = await connectSSH();
+    const sshKey = fs.readFileSync(process.env.SSH_PRIVATE_KEY_PATH, "utf8");
+    await ssh.connect({
+      host: process.env.SSH_HOST,
+      username: process.env.SSH_USERNAME,
+      privateKey: sshKey,
+    });
 
     const result = await ssh.execCommand(`ls -l ${path}`);
     if (result.stderr) {
@@ -37,6 +45,7 @@ const createDirectory = async (req, res) => {
   try {
     const result = await ssh.execCommand(`mkdir ${path}/${name}`);
     if (result.stderr) {
+      console.log(result.stderr);
       return res.status(500).json({ error: result.stderr });
     }
 

@@ -19,9 +19,10 @@ const createService = async (req, res) => {
   } catch (error) {
     console.error("Error creating service:", error);
     res.status(500).json({ message: "Error creating service", error });
-  } finally {
-    ssh.dispose();
-  }
+  } 
+  // finally {
+  //   ssh.dispose();
+  // }
 };
 
 // Configure files

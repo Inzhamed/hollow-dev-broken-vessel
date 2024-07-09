@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Fetch and display directory list
   const fetchDirectories = async (path) => {
-    try {
+    try { 
       const response = await fetch(
         "http://localhost:3000/directories/explore",
         {
